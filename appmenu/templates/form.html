@@ -1,0 +1,13 @@
+
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Criar Produto</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderiza o formulário -->
+        <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+    </form>
+    <a href="{% url 'produtos' %}" class="btn btn-secondary mt-3">Voltar à lista de produtos</a>
+</div>
+{% endblock %}

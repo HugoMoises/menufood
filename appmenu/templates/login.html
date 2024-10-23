@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}MenuFood - Login{% endblock %}
+
+{% block content %}
+<style>
+    body {
+      background-image: url('static/img/background.jpg'); /* Você pode adicionar o link da imagem de fundo aqui */
+      background-size: contain;
+      background-position: center;
+    }
+    .login-container {
+      background-color: #CDCDCD;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px #0000004d;
+      margin: auto;
+    }
+    .login-container h2 {
+      color: #000000; /* Cor do título */
+      font-family: 'Lalezar', serif; /* Fonte do título */
+      font-weight: 750;
+      font-size: 24px;
+    }
+    
+</style>
+<div class="d-flex justify-content-center align-items-center" style="margin-top: 100px;">
+    <div class="login-container text-center">
+      <form method="POST" action="{% url 'login' %}">  <!-- A URL deve ser para o login_view -->
+        {% csrf_token %}
+        <h2>Entrar</h2>
+        <div class="mb-3">
+            <input type="text" name="username" class="form-control" placeholder="Usuário" required>  <!-- Adicionado o atributo 'name' -->
+        </div>
+        <div class="mb-3">
+            <input type="password" name="password" class="form-control" placeholder="Senha" required>  <!-- Adicionado o atributo 'name' -->
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Acessar</button>
+      </form>
+      <p class="mt-3">Não tem cadastro? <a href="{% url 'cadastro' %}">Cadastre-se aqui</a></p>
+    </div>
+</div>
+{% endblock %}

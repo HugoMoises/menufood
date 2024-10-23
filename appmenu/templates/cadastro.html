@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  body {
+    background-image: url("{% static 'img/background.jpg' %}");
+    background-size: contain;
+    background-position: center;
+  }
+  .login-container {
+    background-color: #CDCDCD;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #0000004d;
+    margin: auto;
+  }
+  .login-container h2 {
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Lalezar', serif;
+  }
+  .form-control {
+    font-size: 16px;
+    padding: 10px;
+  }
+  .form-control::placeholder {
+    font-size: 12px;
+    color: #9B9B9B;
+  }
+  .center-container {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .errorlist {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+</style>
+
+<div class="center-container">
+  <div class="login-container" style="width: 350px; height: auto;">
+    <h2>Cadastro</h2>
+    {% for error in form.errors.values %}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+    {% endfor %}
+    <form method="POST" action="{% url 'cadastro' %}"> <!-- Corrija a URL aqui -->
+      {% csrf_token %}
+      {{ form.usuario }}
+      {{ form.email }}
+      {{ form.cidade }}
+      {{ form.telefone }}
+      {{ form.senha }}
+      <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

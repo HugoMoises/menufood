@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    html, body {
+        margin: 0; /* Remove margens padrão */
+        padding: 0; /* Remove padding padrão */
+        height: 100%; /* Para ocupar toda a altura da tela */
+        overflow-x: hidden; /* Para evitar rolagem horizontal */
+        box-sizing: border-box;
+    }
+
+    /* Layout da página dividido em duas metades */
+    .page {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* Página inteira */
+        width: 100vw; /* Garante que ocupa toda a largura da página */
+        overflow: hidden; /* Evita rolagem se necessário */
+    }
+
+
+
+    /* Primeira metade da página (conteúdo principal) */
+    .main-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 40px;
+        width: 100%; /* Garante que ocupa toda a largura */
+        height: 35vh; /* Ocupa a metade superior da página */
+        background-color: #ffffff; /* Cor de fundo da primeira metade */
+    }
+
+    .main-text {
+        font-size: 24px;
+        font-weight: bold;
+        color: #000000;
+        text-align: center;
+        font-family: Lalezar, serif;
+    }
+
+    .sub-text {
+        font-size: 18px;
+        color: #575757;
+        text-align: center;
+        margin-top: 10px;
+        font-family: Lalezar, serif;
+    }
+
+    .image-container {
+        text-align: center;
+    }
+
+    .image-container img {
+        max-width: 220px;
+        height: auto;
+    }
+
+    .learn-more {
+        display: block;
+        font-size: 16px;
+        font-family: Lalezar, serif;
+        color: #000000; /* Cor do link */
+        text-align: center;
+        text-decoration: underline; /* Deixa o link sublinhado */
+        margin-top: 10px;
+    }
+
+    /* Segunda metade da página (imagem de fundo) */
+    .banner {
+        background-image: url("{% static 'img/hamburgueres.jpg' %}"); /* Caminho da imagem de fundo */
+        background-size: cover; /* A imagem cobre toda a div, sem distorção */
+        background-position: bottom; /* Alinha a imagem ao centro e parte inferior */
+        background-repeat: no-repeat; /* Evita repetição da imagem */
+        width: 100%; /* Garante que ocupa toda a largura */
+        height: 65vh; /* O banner ocupa 65% da altura da janela */
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .promo-text {
+        color: red;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: Lalezar, serif;
+        position: absolute;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        top: 5%;
+    }
+</style>
+
+<!-- Estrutura da página em duas metades -->
+<div class="page">
+    <!-- Primeira metade: conteúdo principal -->
+    <div class="main-content">
+        <div>
+            <h2 class="main-text">ACABE COM SUA FOME AQUI!</h2>
+            <p class="sub-text">As melhores comidas, com os melhores preços, você só encontra no MENUFOOD.</p>
+            <a href="{% url 'produtos' %}" class="learn-more">Saiba mais</a> 
+        </div>
+        <div class="image-container">
+            <img src="{% static 'img/combo.png' %}" alt="Hambúrguer e Coca-cola">
+        </div>
+    </div>
+
+    <!-- Segunda metade: banner com imagem de fundo -->
+    <div class="banner">
+        <div class="promo-text">
+            <h1>PROMOÇÃO!!</h1>
+            <p>Leve 4 burgers premium... mas pague por apenas 3.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

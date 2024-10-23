@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    .container-produtos-container {
+        background-image: url('/static/img/background.jpg');
+        background-size: contain;
+        background-position: center;
+        min-height: calc(100vh - 168px);
+        padding: 20px;
+    }
+
+    h2 {
+        color: #000000;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .btn-add-produto {
+        display: block;
+        width: auto;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+        background-color: #001660;
+        color: white;
+        text-align: center;
+        border: none;
+        transition: background-color 0.2s, transform 0.2s;
+        margin-bottom: 20px;
+    }
+
+    .btn-add-produto:hover {
+        background-color: #001660;
+        transform: scale(1.05);
+    }
+
+    .card {
+        background-color: #001660;
+        border: 1px solid #d0d0d0;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 90%;  /* Reduzindo a largura */
+        max-width: 250px; /* Garantir que não fique muito grande */
+        margin: 0 auto; /* Centralizando */
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-body {
+        text-align: center;
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #ffffff;
+    }
+
+    .card-text {
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        border-radius: 30px;
+        padding: 8px 16px;
+        font-weight: bold;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-success {
+        background-color: #2ecc71;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: #27ae60;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+    }
+
+    .btn-cart {
+        background-color: #f39c12;
+        color: white;
+        border: none;
+    }
+
+    .btn-cart:hover {
+        background-color: #d68910;
+    }
+</style>
+
+
+
+<div class="container-produtos-container">
+    <h2>Produtos Disponíveis</h2>
+    <div class="row">
+        {% if request.user.is_authenticated and request.user.is_staff %}
+            <a href="{% url 'criar_produto' %}" class="btn-add-produto">Adicionar Produto</a>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        {% for produto in produtos %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produto.nome }}</h5>
+                        <p class="card-text">Preço: R$ {{ produto.preço }}</p>
+                        <p class="card-text">Categoria: {{ produto.categoria.nome }}</p>
+                        <p class="card-text">Marca: {{ produto.marca.nome }}</p>
+                        <p class="card-text">Descrição: {{ produto.descriçao }}</p>
+                        <a href="#" class="btn btn-cart btn-sm mb-2">Adicionar ao Carrinho</a>
+                        {% if request.user.is_authenticated and request.user.is_staff %}
+                            <a href="{% url 'editar_produto' produto.id %}" class="btn btn-success btn-sm mb-2">Editar</a>
+                            <a href="{% url 'deletar_produto' produto.id %}" class="btn btn-danger btn-sm">Remover</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">Nenhum produto disponível no momento.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

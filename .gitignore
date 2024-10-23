@@ -1,0 +1,15 @@
+# Arquivos Python
+*.pyc
+__pycache__/
+
+# Configurações Django
+*.sqlite3
+/media/
+.env
+
+# Arquivos do sistema
+.DS_Store
+*.log
+
+# Virtual environment
+venv/
