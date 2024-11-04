@@ -90,7 +90,9 @@ def deletar_produto(request, id):
     produto = get_object_or_404(Produto, id=id)
     produto.delete()
     return redirect('produtos')
-
+@login_required
+def logout_view(request):
+    
 
 def sobre(request):
     return render(request, 'sobre.html')
