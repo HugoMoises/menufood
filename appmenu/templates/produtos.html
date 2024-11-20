@@ -142,6 +142,9 @@
         {% empty %}
             <p class="text-center">Nenhum produto disponível no momento.</p>
         {% endfor %}
+        <div class="mt-3">
+            {% include 'pagination.html' with page_obj=produtos %}
+        </div>
     </div>
 </div>
 {% endblock %}

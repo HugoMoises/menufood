@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
-from appmenu.views import login_view, cadastro, home, produtos, sobre, carrinho, criar_produto, editar_produto, deletar_produto
+from appmenu.views import logout_view, login_view, cadastro, home, produtos, sobre, carrinho, criar_produto, editar_produto, deletar_produto
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', auth_views.LoginView.as_view(template_name='login.html'), name='login'),  
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', logout_view, name='logout'),
     path('cadastro/', cadastro, name='cadastro'),
     path('home/', home, name='home'),
     path('produtos/', produtos, name='produtos'),
