@@ -1,1 +1,64 @@
 {% extends 'base.html' %}
+<style>
+/* Alinhar título e introdução à esquerda */
+h1.text-start,
+p.text-start {
+    text-align: left;
+}
+
+/* Diminuir o tamanho das fontes */
+h1 {
+    font-size: 2rem; /* Ajuste o tamanho do título */
+}
+
+h2 {
+    font-size: 1.5rem; /* Tamanho dos subtítulos */
+}
+
+p {
+    font-size: 0.9rem; /* Diminui o tamanho do parágrafo */
+    line-height: 1.5;  /* Mantém boa legibilidade */
+}
+
+
+</style>
+
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Título e introdução -->
+    <h1 class="fw-bold m3-4 text-start">Sobre o MENUFOOD</h1>
+    <p class="mb-5 text-start">
+        O MENUFOOD é um catálogo online dedicado a oferecer uma ampla variedade de alimentos e bebidas, cuidadosamente selecionados para atender aos mais diversos gostos e preferências. Nossa missão é proporcionar aos nossos clientes uma experiência de compra simples, rápida e segura, onde eles possam explorar produtos de qualidade e encontrar exatamente o que precisam, tudo em um só lugar.
+    </p>
+
+    <!-- Grid com as colunas -->
+    <div class="row justify-content-center g-5">
+        <div class="col-md-3 text-center">
+            <h2 class="fw-bold">QUEM <br> SOMOS?</h2>
+            <p>
+                O MENUFOOD é desenvolvido e mantido por uma equipe dedicada de dois amigos, Hugo e Khaua. Combinando
+                habilidades em programação e design, nós trabalhamos juntos para criar uma plataforma que seja ao mesmo
+                tempo funcional e agradável de usar.
+            </p>
+        </div>
+        <div class="col-md-3 text-center">
+            <h2 class="fw-bold">COMO <br> SURGIMOS?</h2>
+            <p>
+                O MENUFOOD surgiu da nossa paixão por tecnologia e da vontade de simplificar o cotidiano. Começando como
+                um projeto acadêmico, tornou-se uma plataforma prática e intuitiva, projetada para facilitar o acesso a
+                produtos alimentícios de qualidade.
+            </p>
+        </div>
+        <div class="col-md-3 text-center">
+            <h2 class="fw-bold">COMO <br> SE ASSOCIAR?</h2>
+            <p>
+                Para se associar ao MENUFOOD, basta entrar em contato com nossa equipe. Oferecemos suporte personalizado
+                e uma parceria que busca crescimento mútuo, ajudando você a alcançar seus objetivos no mercado
+                alimentício.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
