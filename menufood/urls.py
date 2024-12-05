@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
-from appmenu.views import logout_view, login_view, cadastro, home, produtos, sobre, carrinho, criar_produto, editar_produto, deletar_produto
+from appmenu.views import logout_view, login_view, cadastro, home, produtos, sobre, carrinho, adicionar_carrinho, alterar_quantidade_carrinho, remover_carrinho,  criar_produto, editar_produto, deletar_produto
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,8 +31,14 @@ urlpatterns = [
     path('produtos/', produtos, name='produtos'),
     path('sobre/', sobre, name='sobre'),
     path('carrinho/', carrinho, name='carrinho'),
+    path('carrinho/adicionar/<int:produto_id>/', adicionar_carrinho, name='adicionar_ao_carrinho'),
+    path('carrinho/alterar/<int:item_id>/', alterar_quantidade_carrinho, name='alterar_quantidade_carrinho'),
+    path('carrinho/remover/<int:produto_id>/', remover_carrinho, name='remover_do_carrinho'),
     path('produtos/criar/', criar_produto, name='criar_produto'),
     path('produtos/editar/<int:id>/', editar_produto, name='editar_produto'),
     path('produtos/deletar/<int:id>/', deletar_produto, name='deletar_produto'),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

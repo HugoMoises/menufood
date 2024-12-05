@@ -5,7 +5,7 @@ from .models import Marca, Categoria, Produto
 admin.site.register(Marca)
 admin.site.register(Categoria)
 class ProdutoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome', 'descriçao', 'preço')  # Adicione 'id' aqui
+    list_display = ('id', 'nome', 'preço')  # Adicione 'id' aqui
     search_fields = ('nome',)  # Você pode adicionar outros campos que deseja pesquisar
 
 # Registra o modelo no admin com as configurações personalizadas
