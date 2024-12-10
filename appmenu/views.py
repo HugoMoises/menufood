@@ -47,10 +47,6 @@ def home(request):
     return render(request, 'home.html')
 
 
-from django.shortcuts import render
-from .models import Produto, Categoria, Marca
-from django.core.paginator import Paginator
-
 def produtos(request):
     # Captura o termo de busca
     termo_busca = request.GET.get('q')
@@ -141,7 +137,7 @@ def adicionar_carrinho(request, produto_id):
     if not created:
         carrinho_item.quantidade += 1
         carrinho_item.save()
-    return redirect('carrinho')
+    return redirect('produtos')
 
 @login_required
 def alterar_quantidade_carrinho(request, item_id):
@@ -170,6 +166,10 @@ def alterar_quantidade_carrinho(request, item_id):
 def carrinho(request):
     carrinho_items = Carrinho.objects.filter(usuario=request.user)
     total = sum([item.subtotal() for item in carrinho_items])
+    if (request.method == 'POST'):
+        carrinho_items.delete()
+        messages.success(request, 'Compra realizada com sucesso!')
+        return redirect('carrinho')
     return render(request, 'carrinho.html', {'carrinho': carrinho_items, 'total': total})
     
 @login_required
