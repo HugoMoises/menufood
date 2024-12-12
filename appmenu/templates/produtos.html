@@ -44,9 +44,9 @@
         border-radius: 12px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s, box-shadow 0.2s;
-        width: 90%;  /* Reduzindo a largura */
-        max-width: 250px; /* Garantir que não fique muito grande */
-        margin: 0 auto; /* Centralizando */
+        width: 90%;  
+        max-width: 250px; 
+        margin: 0 auto; 
     }
 
     .card:hover {
@@ -136,11 +136,13 @@
                         <p class="card-text">Preço: R$ {{ produto.preço }}</p>
                         <p class="card-text">Categoria: {{ produto.categoria.nome }}</p>
                         <p class="card-text">Marca: {{ produto.marca.nome }}</p>
-                        <!-- Formulário para adicionar ao carrinho -->
-                        <form action="{% url 'adicionar_ao_carrinho' produto.id %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-cart btn-sm mb-2">Adicionar ao Carrinho</button>
-                        </form>
+                        {% if request.user.is_authenticated %}
+                            <form action="{% url 'adicionar_ao_carrinho' produto.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-cart btn-sm mb-2">Adicionar ao Carrinho</button>
+                            </form>
+                        {% endif %}
+                        
                         {% if request.user.is_authenticated and request.user.is_staff %}
                             <a href="{% url 'editar_produto' produto.id %}" class="btn btn-success btn-sm mb-2">Editar</a>
                             <a href="{% url 'deletar_produto' produto.id %}" class="btn btn-danger btn-sm">Remover</a>

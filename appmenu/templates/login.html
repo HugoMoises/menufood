@@ -5,7 +5,7 @@
 {% block content %}
 <style>
     body {
-      background-image: url('static/img/background.jpg'); /* Você pode adicionar o link da imagem de fundo aqui */
+      background-image: url('static/img/background.jpg'); 
       background-size: contain;
       background-position: center;
     }
@@ -17,8 +17,8 @@
       margin: auto;
     }
     .login-container h2 {
-      color: #000000; /* Cor do título */
-      font-family: 'Lalezar', serif; /* Fonte do título */
+      color: #000000; 
+      font-family: 'Lalezar', serif; 
       font-weight: 750;
       font-size: 24px;
     }
@@ -29,14 +29,14 @@
 </style>
 <div class="d-flex justify-content-center align-items-center" style="margin-top: 100px;">
     <div class="login-container text-center">
-      <form method="POST" action="{% url 'login' %}">  <!-- A URL deve ser para o login_view -->
+      <form method="POST" action="{% url 'login' %}">  
         {% csrf_token %}
         <h2>Entrar</h2>
         <div class="mb-3">
-            <input type="text" name="username" class="form-control" placeholder="Usuário" required>  <!-- Adicionado o atributo 'name' -->
+            <input type="text" name="username" class="form-control" placeholder="Usuário" required>  
         </div>
         <div class="mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Senha" required>  <!-- Adicionado o atributo 'name' -->
+            <input type="password" name="password" class="form-control" placeholder="Senha" required>  
         </div>
         <button type="submit" class="btn btn-primary w-100">Acessar</button>
       </form>

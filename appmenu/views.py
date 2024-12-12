@@ -9,7 +9,7 @@ from .forms import ProdutoForm, CadastroForm
 from django.core.paginator import Paginator
 
 # Create your views here.
-def login_view(request):  # Renomeado de login para login_view
+def login_view(request):  
     return render(request, 'login.html')
 
 def logout_view(request):
@@ -19,7 +19,7 @@ def cadastro(request):
     if request.method == 'POST':
         form = CadastroForm(request.POST)
         if form.is_valid():
-            # Verifica se o nome de usuário já existe
+           
             if User.objects.filter(username=form.cleaned_data['usuario']).exists():
                 messages.error(request, 'Esse nome de usuário já está em uso. Escolha outro.')
                 form.add_error('usuario', 'Nome de usuário já em uso')
@@ -29,9 +29,9 @@ def cadastro(request):
                     email=form.cleaned_data['email'],
                     password=form.cleaned_data['senha']
                 )
-                auth_login(request, user)  # Agora chamando o login corretamente
+                auth_login(request, user)  
                 messages.success(request, 'Cadastro realizado com sucesso!')
-                return redirect('home')  # Mude para a URL correta após o cadastro
+                return redirect('home')  
         else:
             messages.error(request, 'Erro ao criar a conta. Verifique os dados.')
     else:
@@ -51,26 +51,16 @@ def produtos(request):
     # Captura o termo de busca
     termo_busca = request.GET.get('q')
 
-    # Filtra os produtos com base no nome (se um termo de busca for fornecido)
-    produtos = Produto.objects.all()
+    produtos = Produto.objects.all().order_by('categoria', 'nome')
     
     if termo_busca:
         produtos = produtos.filter(nome__icontains=termo_busca)  # Filtra por nome do produto
 
-    # Adicionando filtros de categoria e marca, se necessário
-    categoria = request.GET.get('categoria')
-    marca = request.GET.get('marca')
-    if categoria:
-        produtos = produtos.filter(categoria__nome=categoria)
-    if marca:
-        produtos = produtos.filter(marca__nome=marca)
-
-    # Paginação
-    paginator = Paginator(produtos, 8)  # Exibe 8 produtos por página
+    paginator = Paginator(produtos, 8)  
     page = request.GET.get('page')
     produtos = paginator.get_page(page)
 
-    # Recupera as categorias e marcas para o filtro
+    
     categorias = Categoria.objects.all()
     marcas = Marca.objects.all()
 
@@ -78,7 +68,7 @@ def produtos(request):
         'produtos': produtos,
         'categorias': categorias,
         'marcas': marcas,
-        'termo_busca': termo_busca,  # Passa o termo de busca para manter no campo de pesquisa
+        'termo_busca': termo_busca,  
     })
 def is_admin(user):
     return user.is_staff
@@ -144,18 +134,18 @@ def alterar_quantidade_carrinho(request, item_id):
     item = get_object_or_404(Carrinho, id=item_id, usuario=request.user)
     
     if request.method == 'POST':
-        # Verifica se o botão pressionado foi para aumentar ou diminuir a quantidade
+        
         if 'quantidade' in request.POST:
-            # Se o campo 'quantidade' foi enviado (botão +)
+            
             quantidade = int(request.POST['quantidade'])
             if quantidade > 0:
                 item.quantidade = quantidade
                 item.save()
         else:
-            # Caso contrário, diminui a quantidade (botão -)
+            
             item.quantidade -= 1
             if item.quantidade <= 0:
-                item.delete()  # Remove o item se a quantidade for <= 0
+                item.delete() 
             else:
                 item.save()
                 

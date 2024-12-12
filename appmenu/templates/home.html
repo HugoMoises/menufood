@@ -3,33 +3,33 @@
 {% block content %}
 <style>
     html, body {
-        margin: 0; /* Remove margens padrão */
-        padding: 0; /* Remove padding padrão */
-        height: 100%; /* Para ocupar toda a altura da tela */
-        overflow-x: hidden; /* Para evitar rolagem horizontal */
+        margin: 0; 
+        padding: 0;
+        height: 100%; 
+        overflow-x: hidden; 
         box-sizing: border-box;
     }
 
-    /* Layout da página dividido em duas metades */
+   
     .page {
         display: flex;
         flex-direction: column;
-        height: 100vh; /* Página inteira */
-        width: 100vw; /* Garante que ocupa toda a largura da página */
-        overflow: hidden; /* Evita rolagem se necessário */
+        height: 100vh; 
+        width: 100vw; 
+        overflow: hidden; 
     }
 
 
 
-    /* Primeira metade da página (conteúdo principal) */
+    
     .main-content {
         display: flex;
         justify-content: space-around;
         align-items: center;
         padding: 40px;
-        width: 100%; /* Garante que ocupa toda a largura */
-        height: 35vh; /* Ocupa a metade superior da página */
-        background-color: #ffffff; /* Cor de fundo da primeira metade */
+        width: 100%; 
+        height: 35vh; 
+        background-color: #ffffff;
     }
 
     .main-text {

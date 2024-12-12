@@ -49,7 +49,7 @@
         {{ error }}
       </div>
     {% endfor %}
-    <form method="POST" action="{% url 'cadastro' %}"> <!-- Corrija a URL aqui -->
+    <form method="POST" action="{% url 'cadastro' %}"> 
       {% csrf_token %}
       {{ form.usuario }}
       {{ form.email }}

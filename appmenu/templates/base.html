@@ -11,8 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
   <style>
     .form-control::placeholder {
-      color: #9B9B9B; /* Cor do texto dos placeholders */
-      opacity: 1; /* Para garantir que a cor do placeholder seja visível */
+      color: #9B9B9B; 
+      opacity: 1; 
     }
 
     body {
@@ -23,14 +23,14 @@
     }
 
     .btn-primary {
-      background-color: #001660; /* Cor do fundo do botão */
-      border-color: #001660; /* Cor da borda do botão */
-      font-family: 'Arial', sans-serif; /* Fonte do botão */
+      background-color: #001660; 
+      border-color: #001660; 
+      font-family: 'Arial', sans-serif; 
       font-weight: 600;
     }
     .btn-primary:hover {
-      background-color: #001660; /* Cor do fundo do botão ao passar o mouse */
-      border-color: #001660; /* Cor da borda do botão ao passar o mouse */
+      background-color: #001660; 
+      border-color: #001660; 
     }
     .navbar {
       background-color: #CDCDCD;
@@ -49,19 +49,19 @@
       color: #000000;
     }
     a {
-      color: #000000; /* Cor dos links */
+      color: #000000; 
     }
     a:hover {
-      color: #000000; /* Cor ao passar o mouse nos links */
+      color: #000000; 
     }
-    /* Centraliza e ajusta a barra de pesquisa */
+    
     .navbar .search-container {
       display: flex;
       justify-content: center;
       width: 100%;
     }
     .navbar .search-container .form-control {
-      width: 400px; /* Aumenta o comprimento da barra de pesquisa */
+      width: 400px; 
     }
     .search-container .input-group {
       width: 100%;
@@ -76,7 +76,7 @@
         <a class="navbar-brand" href="{% url 'login' %}">
           <img src="{% static 'img/logo.png' %}" alt="Logo MenuFood">
         </a>
-        <!-- Centraliza a barra de pesquisa -->
+        
         <div class="search-container mx-auto">
           <form class="d-flex input-group" method="GET" action="{% url 'produtos' %}">
             <input class="form-control" type="search" name="q" placeholder="Buscar produtos e mais..." aria-label="Search" style="width: 400px;" value="{{ request.GET.q }}">
@@ -122,12 +122,12 @@
         </div>
       </div>
     </nav>
-    <!-- Corpo da Página -->
+    
     <div class="container">
       {% block content %}
       {% endblock %}
     </div>
-    <!-- Footer -->
+   
     <footer class="footer">
         <div>
           <a href="https://www.facebook.com" target="_blank"><img src="{% static 'img/facebook.png' %}" width="20"></a>
